@@ -32,7 +32,7 @@ class _AttendScreenState extends State<AttendScreen> {
   bool isLoading = false;
   XFile? image;
   final controllerName = TextEditingController();
-  final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance');
+  final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance_app');
 
   _AttendScreenState(XFile? image);
 
@@ -51,7 +51,7 @@ class _AttendScreenState extends State<AttendScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blueGrey,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
@@ -80,7 +80,7 @@ class _AttendScreenState extends State<AttendScreen> {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  color: Colors.blueAccent,
+                  color: Colors.blueGrey,
                 ),
                 child: const Row(
                   children: [
@@ -122,7 +122,7 @@ class _AttendScreenState extends State<AttendScreen> {
                   child: DottedBorder(
                     radius: const Radius.circular(10),
                     borderType: BorderType.RRect,
-                    color: Colors.blueAccent,
+                    color: Colors.blueGrey,
                     strokeWidth: 1,
                     dashPattern: const [5, 5],
                     child: SizedBox.expand(
@@ -134,7 +134,7 @@ class _AttendScreenState extends State<AttendScreen> {
                               )
                             : const Icon(
                                 Icons.camera_enhance_outlined,
-                                color: Colors.blueAccent,
+                                color: Colors.blueGrey,
                               ),
                       ),
                     ),
@@ -157,11 +157,11 @@ class _AttendScreenState extends State<AttendScreen> {
                         const TextStyle(fontSize: 14, color: Colors.black),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.blueAccent),
+                      borderSide: const BorderSide(color: Colors.blueGrey),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.blueAccent),
+                      borderSide: const BorderSide(color: Colors.blueGrey),
                     ),
                   ),
                 ),
@@ -187,7 +187,7 @@ class _AttendScreenState extends State<AttendScreen> {
                       alignLabelWithHint: true,
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.blueAccent),
+                        borderSide: const BorderSide(color: Colors.blueGrey),
                       ),
                       hintText: 'Your Location',
                       hintStyle:
@@ -197,37 +197,11 @@ class _AttendScreenState extends State<AttendScreen> {
                     ),
                   ),
                 ),
-              ),
-              isLoading
-                  ? const Center(
+              ), isLoading ? const Center(
                       child: CircularProgressIndicator(
-                      color: Colors.blueAccent,
+                      color: Colors.blueGrey,
                     ))
-                  : Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: SizedBox(
-                        height: 120,
-                        child: TextField(
-                          enabled: false,
-                          maxLines: 3,
-                          decoration: InputDecoration(
-                            alignLabelWithHint: true,
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  const BorderSide(color: Colors.blueAccent),
-                            ),
-                            hintText: strAddress.isEmpty
-                                ? strAddress
-                                : 'Your Location',
-                            hintStyle:
-                                TextStyle(fontSize: 14, color: Colors.grey),
-                            fillColor: Colors.transparent,
-                            filled: true,
-                          ),
-                        ),
-                      )),
-              Container(
+:              Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.all(30),
                 child: Material(
@@ -242,9 +216,9 @@ class _AttendScreenState extends State<AttendScreen> {
                     ),
                     child: Material(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueAccent,
+                      color: Colors.blueGrey,
                       child: InkWell(
-                        splashColor: Colors.blue,
+                        splashColor: Colors.grey,
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
                           if (image == null||controllerName.text.isEmpty) {

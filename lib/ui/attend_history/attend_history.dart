@@ -3,37 +3,34 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AttendHistoryScreen extends StatefulWidget {
-  const AttendHistoryScreen({super.key});
+class AttendanceHistoryScreen extends StatefulWidget {
+  const AttendanceHistoryScreen({super.key});
 
   @override
-  State<AttendHistoryScreen> createState() => _AttendHistoryScreenState();
+  State<AttendanceHistoryScreen> createState() =>
+      _AttendanceHistoryScreenState();
 }
 
-class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
+class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
   final CollectionReference dataCollection =
-  FirebaseFirestore.instance.collection('absen');
-
+  FirebaseFirestore.instance.collection('attendance_app');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blueGrey,
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            )),
-        title: const Text(
-          'History Attendance',
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        title: const Text("Attendance History",
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
       ),
       body: FutureBuilder<QuerySnapshot>(
           future: dataCollection.get(),
@@ -46,33 +43,33 @@ class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
                   itemBuilder: (context, index) {
                     return Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      ),
+                          borderRadius: BorderRadius.circular(10)),
                       elevation: 5,
+
                       margin: const EdgeInsets.all(10),
                       color: Colors.white,
                       child: Row(
                         children: [
                           Container(
-                            width: 50,
                             height: 50,
+                            width: 50,
                             decoration: BoxDecoration(
-                                color: Colors.primaries[Random().nextInt(
-                                    Colors.primaries.length)],
-                                borderRadius: BorderRadius.circular(50)
-                            ),
+                                color: Colors.primaries[Random()
+                                    .nextInt(Colors.primaries.length)],
+                                borderRadius: BorderRadius.circular(50)),
                             child: Center(
-                              child: Text((data.isNotEmpty&&data[index]['name']!=null)
-                                  ?
-                              data[index]['name'][0].toUpperCase():'-',
+                              child: Text(
+                                (data.isNotEmpty && data[index]['name'] != null)
+                                    ? data[index]['name'][0].toUpperCase()
+                                    : '-',
                                 style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),),
+                                    color: Colors.white, fontSize: 14),
+                              ),
                             ),
-
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Flexible(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,43 +79,26 @@ class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
                                     children: [
                                       const Expanded(
                                           flex: 4,
-                                          child: Text("name", style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),)
-                                      ),
-                                      const Expanded(flex: 1,
-                                          child: Text(':', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14),)),
-                                      Expanded(child: Text(data[index]['name'],
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14
-                                        ),))
-                                    ],
-                                  ),
-
-                                  Row(
-                                    children: [
-                                      const Expanded(
-                                          flex: 4,
                                           child: Text(
-                                            "address", style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),)
-                                      ),
-                                      const Expanded(flex: 1,
-                                          child: Text(':', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14),)),
-                                      Expanded(child: Text(
-                                        data[index]['address'],
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14
-                                        ),))
+                                            'name',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      const Expanded(
+                                          flex: 1,
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      Expanded(
+                                          child: Text(
+                                            data[index]['name'],
+                                            style: const TextStyle(
+                                                color: Colors.black, fontSize: 14),
+                                          ))
                                     ],
                                   ),
                                   Row(
@@ -126,21 +106,25 @@ class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
                                       const Expanded(
                                           flex: 4,
                                           child: Text(
-                                            "status", style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),)
-                                      ),
-                                      const Expanded(flex: 1,
-                                          child: Text(':', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14),)),
-                                      Expanded(child: Text(
-                                        data[index]['status'],
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14
-                                        ),))
+                                            'address',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      const Expanded(
+                                          flex: 1,
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      Expanded(
+                                          child: Text(
+                                            data[index]['address'],
+                                            style: const TextStyle(
+                                                color: Colors.black, fontSize: 14),
+                                          ))
                                     ],
                                   ),
                                   Row(
@@ -148,35 +132,64 @@ class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
                                       const Expanded(
                                           flex: 4,
                                           child: Text(
-                                            "date/time", style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),)
-                                      ),
-                                      const Expanded(flex: 1,
-                                          child: Text(':', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14),)),
-                                      Expanded(child: Text(
-                                        data[index]['dateTime'],
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14
-                                        ),))
+                                            'status',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      const Expanded(
+                                          flex: 1,
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      Expanded(
+                                          child: Text(
+                                            data[index]['status'],
+                                            style: const TextStyle(
+                                                color: Colors.black, fontSize: 14),
+                                          ))
                                     ],
                                   ),
-
+                                  Row(
+                                    children: [
+                                      const Expanded(
+                                          flex: 4,
+                                          child: Text(
+                                            'dateTime',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      const Expanded(
+                                          flex: 1,
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14),
+                                          )),
+                                      Expanded(
+                                          child: Text(
+                                            data[index]['dateTime'],
+                                            style: const TextStyle(
+                                                color: Colors.black, fontSize: 14),
+                                          ))
+                                    ],
+                                  )
                                 ],
-
-                              )
-                          )
-
+                              ))
                         ],
                       ),
                     );
-                  }) : const Center(
+                  })
+                  : const Center(
                 child: Text(
-                  "Ups, data not found", style: TextStyle(fontSize: 20),),
+                  "Ups, data not found!",
+                  style: TextStyle(fontSize: 20),
+                ),
               );
             } else {
               return const Center(
@@ -185,8 +198,7 @@ class _AttendHistoryScreenState extends State<AttendHistoryScreen> {
                 ),
               );
             }
-          }
-      ),
+          }),
     );
   }
 }

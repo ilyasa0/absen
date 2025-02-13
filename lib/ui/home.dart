@@ -20,14 +20,25 @@ class HomeScreen extends StatelessWidget {
     },
         child:
     Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.blueGrey,
+        title: const Text(
+          "Home",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
+      backgroundColor: Colors.white70,
       body: SafeArea(
           child: Center(
-              child:Column(
+              child:Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
+                    width: 100,
+                    height: 140,
                     child: Expanded(
                         child: InkWell(
                           highlightColor: Colors.transparent,
@@ -35,51 +46,102 @@ class HomeScreen extends StatelessWidget {
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const AttendScreen()));
                           },
-                          child: const Column(
-                            children: [
-                              Image(image: AssetImage('assets/img/ic_absen.png'),
-                                width: 100,
-                                height: 100,),
-                              Text('Absen Kehadiran')
-                            ],
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ]
+                            ),
+                            child: const Column(
+
+                              children: [
+                                Image(image: AssetImage('assets/img/ic_absen.png'),
+                                  width: 50,
+                                  height: 50,),
+                                Text('Absen Kehadiran')
+                              ],
+                            ),
                           ),
                         )
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(width: 5,),
                   Container(
+                    width: 100,
+                    height: 140,
                     margin: const EdgeInsets.all(10),
                     child: Expanded(
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const AbsenScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const AbsentScreen()));
                           },
-                          child: const Column(
-                            children: [
-                              Image(image: AssetImage('assets/img/ic_leave.png'),
-                                width: 100,
-                                height: 100,),
-                              Text('Izin/cuti')
-                            ],
+                          child: Container(
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ]
+                            ),
+                            child: const Column(
+
+                              children: [
+                                Image(image: AssetImage('assets/img/ic_leave.png'),
+                                  width: 50,
+                                  height: 50,),
+                                Text('Izin/cuti')
+                              ],
+                            ),
                           ),
                         )
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(width: 5,),
                   Container(
+                    width: 100,
+                    height: 140,
                     margin: const EdgeInsets.all(10),
                     child: Expanded(
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const AttendHistoryScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const AttendanceHistoryScreen()));
                           },
-                          child: const Column(
-                            children: [
-                              Image(image: AssetImage('assets/img/ic_history.png'),
-                                width: 100,
-                                height: 100,),
-                              Text('History Absen')
-                            ],
+                          child: Container(
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ]
+                            ),
+                            child: const Column(
+                              children: [
+                                Image(image: AssetImage('assets/img/ic_history.png'),
+                                  width: 50,
+                                  height: 50,),
+                                Text('History Absen')
+                              ],
+                            ),
                           ),
                         )
                     ),
